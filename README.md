@@ -33,7 +33,7 @@ If filename matches...      Then :Run means...
 .*_test.rb                  !ruby -Ilib:test %
 
 If the filetype matches...  Then :Run means...
-haskell                     !runshakell %
+haskell                     !runhaskell %
 html                        !$BROWSER %
 python                      !python %
 ruby                        !ruby -Ilib %
