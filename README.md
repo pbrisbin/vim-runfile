@@ -1,23 +1,23 @@
 # runfile
 
-I was sick of adding `<Leader>r` mappings to all the various file types 
-I work in. There should be a single function/mapping that automagically 
-runs the correct command using some simple rules based on the file name 
-and type.
+I was sick of adding a bunch of `<Leader>r` mappings to "run" the various 
+executable or interpretable file types I work in. Why not a single 
+function that automagically runs the correct command using some simple 
+rules based on the file name and type?
 
 It should do the Right Thing most of the time and I should be able to 
-easily add custom rules in `.vimrc` when it doesn't.
-
-Note: *This may already exist...*
+easily add custom additions and overrides in `.vimrc` when it doesn't.
 
 ## Installation
 
-Use pathogen.
+Use [pathogen][].
 
 ~~~ 
 $ cd .vim/bundle
 $ git clone https://github.com/pbrisbin/vim-runfile
 ~~~
+
+[pathogen]: https://github.com/tpope/vim-pathogen
 
 ## Usage
 
@@ -27,8 +27,6 @@ $ git clone https://github.com/pbrisbin/vim-runfile
 
 ## Rules
 
-Checked in order, first hit wins.
-
 ~~~ 
 If filename matches...      Then :Run means...
 .*_spec.rb                  !rspec -c %
@@ -36,17 +34,16 @@ If filename matches...      Then :Run means...
 
 If the filetype matches...  Then :Run means...
 haskell                     !runshakell %
-html                        !$BROWSER %',
-python                      !python %',
-ruby                        !ruby -Ilib %',
-sh                          !/bin/sh %'
+html                        !$BROWSER %
+python                      !python %
+ruby                        !ruby -Ilib %
+sh                          !/bin/sh %
 ~~~
 
 ## Extending
 
-Before looking at the above, runfile will check for user supplied 
-mappings of each name and type. The order is user-by-name, 
-default-by-name, user-by-type, default-by-type.
+If the maps `g:runfile_by_name` or `g:runfile_by_type` exist, they are 
+merged into the default rules when the plugin first loads. 
 
 ### Example
 
@@ -67,7 +64,7 @@ the source should be obvious.
 ## Notes
 
 1. Right now, the pattern in `_by_name` is matched against the filename, 
-   not the full path. I might change that if it seems useful.
+   not the full path. I might change that if it seems limiting.
 
 2. The filename pattern is regex, not glob.
 
