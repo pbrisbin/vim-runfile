@@ -40,8 +40,19 @@ if exists("g:runfile_by_type")
     \ extend(g:runfile_by_type, s:default_by_type, "keep")
 endif
 
+" Define a function that can tell me if a file is executable
+function! s:FileExecutable(fname)
+  execute "silent! ! test -x" a:fname
+  return !v:shell_error
+endfunction
+
 function s:Runfile()
   let fname = expand('%')
+
+  if s:FileExecutable(fname)
+    exec '!./%'
+    return
+  endif
 
   for pattern in keys(s:default_by_name)
     if fname =~ pattern
