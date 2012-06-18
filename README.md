@@ -28,6 +28,9 @@ $ git clone https://github.com/pbrisbin/vim-runfile
 ## Rules
 
 ~~~ 
+If file is executable...    Then :Run means...
+                            !./% 
+                            
 If filename matches...      Then :Run means...
 .*_spec.rb                  !rspec -c %
 .*_test.rb                  !ruby -Ilib:test %
