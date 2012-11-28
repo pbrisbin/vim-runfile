@@ -27,7 +27,8 @@ let s:default_by_type = {
   \ 'html'   : '!$BROWSER %',
   \ 'python' : '!python %',
   \ 'ruby'   : '!ruby -Ilib %',
-  \ 'sh'     : '!/bin/sh %'
+  \ 'sh'     : '!/bin/sh %',
+  \ 'cram'   : '!cram %'
   \ }
 
 if exists("g:runfile_by_name")
