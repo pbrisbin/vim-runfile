@@ -18,17 +18,19 @@ let g:loaded_runfile_plugin = 1
 command! Run call s:Runfile()
 
 let s:default_by_name = {
-  \ '.*_spec.rb': '!rspec -c %',
-  \ '.*_test.rb': '!ruby -Ilib:test %'
+  \ '.*_spec.rb'   : '!rspec -c %',
+  \ '.*_test.rb'   : '!ruby -Ilib:test %'
   \ }
 
 let s:default_by_type = {
-  \ 'haskell': '!runhaskell %',
-  \ 'html'   : '!$BROWSER %',
-  \ 'python' : '!python %',
-  \ 'ruby'   : '!ruby -Ilib %',
-  \ 'sh'     : '!/bin/sh %',
-  \ 'cram'   : '!cram %'
+  \ 'cram'    : '!cram %'
+  \ 'cucumber': '!cucumber %'
+  \ 'go'      : '!go run %',
+  \ 'haskell' : '!runhaskell %',
+  \ 'html'    : '!$BROWSER %',
+  \ 'python'  : '!python %',
+  \ 'ruby'    : '!ruby -Ilib %',
+  \ 'sh'      : '!/bin/sh %',
   \ }
 
 if exists("g:runfile_by_name")
