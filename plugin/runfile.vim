@@ -23,14 +23,14 @@ let s:default_by_name = {
   \ }
 
 let s:default_by_type = {
-  \ 'cram'    : '!cram %'
-  \ 'cucumber': '!cucumber %'
+  \ 'cram'    : '!cram %',
+  \ 'cucumber': '!cucumber %',
   \ 'go'      : '!go run %',
   \ 'haskell' : '!runhaskell %',
   \ 'html'    : '!$BROWSER %',
   \ 'python'  : '!python %',
   \ 'ruby'    : '!ruby -Ilib %',
-  \ 'sh'      : '!/bin/sh %',
+  \ 'sh'      : '!/bin/sh %'
   \ }
 
 if exists("g:runfile_by_name")
