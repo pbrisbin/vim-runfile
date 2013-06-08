@@ -50,10 +50,10 @@ function! s:FileExecutable(fname)
 endfunction
 
 function s:Runfile()
-  let fname = expand('%')
+  let fname = expand('%', ':p')
 
   if s:FileExecutable(fname)
-    exec '!./%'
+    exec '!'.fname
     return
   endif
 
