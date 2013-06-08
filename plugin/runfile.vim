@@ -45,7 +45,7 @@ endif
 
 " Define a function that can tell me if a file is executable
 function! s:FileExecutable(fname)
-  execute "silent! ! test -x" a:fname
+  execute "silent! ! test -x '".a:fname."'"
   return !v:shell_error
 endfunction
 
