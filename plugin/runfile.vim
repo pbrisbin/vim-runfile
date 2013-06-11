@@ -43,7 +43,6 @@ if exists("g:runfile_by_type")
     \ extend(g:runfile_by_type, s:default_by_type, "keep")
 endif
 
-" Define a function that can tell me if a file is executable
 function! s:FileExecutable(fname)
   execute "silent! ! test -x '".a:fname."'"
   return !v:shell_error
@@ -52,6 +51,7 @@ endfunction
 function s:Runfile()
   let fname = expand('%', ':p')
 
+  " special case, executable
   if s:FileExecutable(fname)
     exec '!'.fname
     return
@@ -59,19 +59,23 @@ function s:Runfile()
 
   for pattern in keys(s:default_by_name)
     if fname =~ pattern
-      "echo s:default_by_name[pattern]
-      exec s:default_by_name[pattern]
+      execute s:default_by_name[pattern]
       return
     endif
   endfor
 
   for type in keys(s:default_by_type)
     if &ft == type
-      "echo s:default_by_type[type]
-      exec s:default_by_type[type]
+      execute s:default_by_type[type]
       return
     endif
   endfor
+
+  " special case, vimscript
+  if &ft == 'vim'
+    source fname
+    return
+  endif
 
   echo 'runfile: No match for this name or type'
 endfunction
