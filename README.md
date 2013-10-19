@@ -1,36 +1,36 @@
 # runfile
 
-I was sick of adding a bunch of `<Leader>r` mappings to "run" the various 
-executable or interpretable file types I work in. Why not a single 
-function that automagically runs the correct command using some simple 
-rules based on the file name and type?
+I was sick of adding a bunch of `<Leader>r` mappings to "run" the 
+various executable or interpretable file types I work in. Why not a 
+single function that auto-magically runs the correct command using some 
+simple rules based on the file name and type?
 
 It should do the Right Thing most of the time and I should be able to 
-easily add custom additions and overrides in `.vimrc` when it doesn't.
+easily customize and override in `.vimrc`.
 
 ## Installation
 
 Use [pathogen][].
 
-~~~ 
+```
 $ cd .vim/bundle
 $ git clone https://github.com/pbrisbin/vim-runfile
-~~~
+```
 
 [pathogen]: https://github.com/tpope/vim-pathogen
 
 ## Usage
 
-~~~ 
+```vim
 :Run
-~~~
+```
 
 ## Rules
 
-~~~ 
+```
 If file is executable...    Then :Run means...
-                            !./% 
-                            
+                            !./%
+
 If filename matches...      Then :Run means...
 .*_spec.rb                  !rspec -c %
 .*_test.rb                  !ruby -Ilib:test %
@@ -41,16 +41,16 @@ html                        !$BROWSER %
 python                      !python %
 ruby                        !ruby -Ilib %
 sh                          !/bin/sh %
-~~~
+```
 
 ## Extending
 
 If the maps `g:runfile_by_name` or `g:runfile_by_type` exist, they are 
-merged into the default rules when the plugin first loads. 
+merged into the default rules when the plugin first loads.
 
 ### Example
 
-~~~ { .vim }
+```vim
 let g:runfile_by_name = {
     \ 'config.ru': '!rackup %',
     \ }
@@ -59,10 +59,7 @@ let g:runfile_by_type = {
     \ 'markdown': '!markdown2pdf %',
     \ 'html'    : '%!tidy',
     \ }
-~~~
-
-If you have a useful mapping, please pull request it. How to add it to 
-the source should be obvious.
+```
 
 ## Notes
 
