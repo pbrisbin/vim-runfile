@@ -44,7 +44,7 @@ if exists("g:runfile_by_type")
 endif
 
 function! s:FileExecutable(fname)
-  execute "silent! ! test -x '".a:fname."'"
+  call system("test -x " . shellescape(a:fname))
   return !v:shell_error
 endfunction
 
@@ -53,7 +53,7 @@ function s:Runfile()
 
   " special case, executable
   if s:FileExecutable(fname)
-    exec '!'.fname
+    execute '!./'.fname
     return
   endif
 
