@@ -18,8 +18,8 @@ let g:loaded_runfile_plugin = 1
 command! Run call s:Runfile()
 
 let s:default_by_name = {
-  \ '.*_spec.rb'   : '!rspec -c %',
-  \ '.*_test.rb'   : '!ruby -Ilib:test %'
+  \ '.*_spec\.rb': '!rspec -c %',
+  \ '.*_test\.rb': '!ruby -Ilib:test %'
   \ }
 
 let s:default_by_type = {
