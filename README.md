@@ -29,20 +29,23 @@ $ git clone https://github.com/pbrisbin/vim-runfile
 
 ```
 If file is executable...    Then :Run means...
-                            !./%
+                            !%
 
 If filename matches...      Then :Run means...
-.*_spec.rb                  !rspec -c %
-.*_test.rb                  !ruby -Ilib:test %
+.*_spec\.rb                 !rspec -c %
+.*_test\.rb                 !ruby -Ilib:test %
 
 If the filetype matches...  Then :Run means...
+cram                        !cram %
+cucumber                    !cucumber %
+go                          !go run %
 haskell                     !runhaskell %
 html                        !$BROWSER %
 python                      !python %
 ruby                        !ruby -Ilib %
 sh                          !/bin/sh %
+vim                         source %
 ```
-
 ## Extending
 
 If the maps `g:runfile_by_name` or `g:runfile_by_type` exist, they are 
