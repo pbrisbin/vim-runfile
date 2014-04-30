@@ -6,7 +6,7 @@
 "              place in your vimrc.
 " Maintainer:  Patrick Brisbin <pbrisbin@gmail.com>
 " Version:     0.0.1
-" Last Change: 14 May 2012
+" Last Change: 29 Aug 2014
 " License:     MIT
 "
 "============================================================================
@@ -15,7 +15,7 @@ if exists("g:loaded_runfile_plugin")
 endif
 let g:loaded_runfile_plugin = 1
 
-command! Run call s:Runfile()
+command Run call s:Runfile()
 
 let s:default_by_name = {
   \ '.*_spec\.rb': '!rspec -c %',
@@ -43,7 +43,7 @@ if exists("g:runfile_by_type")
     \ extend(g:runfile_by_type, s:default_by_type, "keep")
 endif
 
-function! s:FileExecutable(fname)
+function s:FileExecutable(fname)
   call system("test -x " . shellescape(a:fname))
   return !v:shell_error
 endfunction
@@ -51,7 +51,6 @@ endfunction
 function s:Runfile()
   let fname = expand('%', ':p')
 
-  " special case, executable
   if s:FileExecutable(fname)
     execute '!%'
     return
@@ -71,7 +70,8 @@ function s:Runfile()
     endif
   endfor
 
-  " special case, vimscript
+  " Special case for vimscript. If the source were to occur via execute, weird
+  " things tend to happen so we have to handle this outside of the type mapping.
   if &ft == 'vim'
     source fname
     return
