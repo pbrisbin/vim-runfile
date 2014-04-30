@@ -53,7 +53,7 @@ function s:Runfile()
 
   " special case, executable
   if s:FileExecutable(fname)
-    execute '!./'.fname
+    execute '!%'
     return
   endif
 
