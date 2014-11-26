@@ -73,3 +73,6 @@ let g:runfile_by_type = {
 
 3. The command part of the mapping can be any vim command, it need not 
    execute anything.
+
+4. The rules are tried in key-alphabetical order, not definition order as you
+   might expect or want. This is because of vim, not by design.
