@@ -56,16 +56,16 @@ function s:Runfile()
     return
   endif
 
-  for pattern in keys(s:default_by_name)
+  for [pattern, action] in items(s:default_by_name)
     if fname =~ pattern
-      execute s:default_by_name[pattern]
+      execute action
       return
     endif
   endfor
 
-  for type in keys(s:default_by_type)
+  for [type, action] in items(s:default_by_type)
     if &ft == type
-      execute s:default_by_type[type]
+      execute action
       return
     endif
   endfor
