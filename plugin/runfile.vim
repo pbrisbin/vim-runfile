@@ -15,6 +15,16 @@ if exists("g:loaded_runfile_plugin")
 endif
 let g:loaded_runfile_plugin = 1
 
+if ! exists("g:runfile_debug")
+  let g:runfile_debug = 0
+endif
+
+function s:Debug(message)
+  if g:runfile_debug
+    echom a:message
+  endif
+endfunction
+
 command Run call s:Runfile()
 
 let s:default_by_name = {
@@ -51,13 +61,19 @@ endfunction
 function s:Runfile()
   let fname = expand('%:p')
 
+  call s:Debug("filename: ".fname)
+
   if s:FileExecutable(fname)
+    call s:Debug("file is executable")
+    call s:Debug("execute: !".fname)
     execute '!'.fname
     return
   endif
 
   for [pattern, action] in items(s:default_by_name)
     if fname =~ pattern
+      call s:Debug("name matched ".pattern)
+      call s:Debug("execute: ".action)
       execute action
       return
     endif
@@ -65,6 +81,8 @@ function s:Runfile()
 
   for [type, action] in items(s:default_by_type)
     if &ft == type
+      call s:Debug("type matched ".type)
+      call s:Debug("execute: ".action)
       execute action
       return
     endif
@@ -73,6 +91,8 @@ function s:Runfile()
   " Special case for vimscript. If the source were to occur via execute, weird
   " things tend to happen so we have to handle this outside of the type mapping.
   if &ft == 'vim'
+    call s:Debug("type is vim")
+    call s:Debug("execute: source ".fname)
     source fname
     return
   endif
