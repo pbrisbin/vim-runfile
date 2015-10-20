@@ -45,12 +45,12 @@ let s:default_by_type = {
 
 if exists("g:runfile_by_name")
   let s:default_by_name =
-    \ extend(g:runfile_by_name, s:default_by_name, "keep")
+    \ extend(s:default_by_name, g:runfile_by_name)
 endif
 
 if exists("g:runfile_by_type")
   let s:default_by_type =
-    \ extend(g:runfile_by_type, s:default_by_type, "keep")
+    \ extend(s:default_by_type, g:runfile_by_type)
 endif
 
 function s:FileExecutable(fname)
