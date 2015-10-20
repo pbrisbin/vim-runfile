@@ -25,15 +25,11 @@ $ git clone https://github.com/pbrisbin/vim-runfile
 :Run
 ```
 
-## Rules
+## Default Rules
 
 ```
 If file is executable...    Then :Run means...
                             !%
-
-If filename matches...      Then :Run means...
-.*_spec\.rb                 !rspec -c %
-.*_test\.rb                 !ruby -Ilib:test %
 
 If the filetype matches...  Then :Run means...
 cram                        !cram %

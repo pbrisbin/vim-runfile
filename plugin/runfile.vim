@@ -27,11 +27,7 @@ endfunction
 
 command Run call s:Runfile()
 
-let s:default_by_name = {
-  \ '.*_spec\.rb': '!rspec -c %',
-  \ '.*_test\.rb': '!ruby -Ilib:test %'
-  \ }
-
+let s:default_by_name = { }
 let s:default_by_type = {
   \ 'cram'    : '!cram %',
   \ 'cucumber': '!cucumber %',
